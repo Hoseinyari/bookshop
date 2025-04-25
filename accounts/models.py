@@ -1,10 +1,10 @@
 from django.db import models
 from django.utils import timezone
 # from django.contrib.auth.models import AbstractBaseUser, UserManager , PermissionsMixin
-
+from django.contrib.auth.models import User
 # Create your models here.
 
-class Customer(models.Model):
+class Customer(User):
     username = models.CharField(max_length=200)
 
     is_active = models.BooleanField(default=True)
