@@ -6,6 +6,7 @@ from django.contrib.auth import authenticate,login,logout
 from books.views import *
 # Create your views here.
 
+
 def login_view(request):
     if request.method == 'POST':
         form = MyLoginForm(request.POST)
