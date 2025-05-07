@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Details</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #e0f7e0, #a5d6a7, #81c784);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .book-container {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            width: 100%;
+            max-width: 700px;
+            display: flex;
+            transition: transform 0.3s ease;
+        }
+
+        .book-container:hover {
+            transform: translateY(-5px);
+        }
+
+        .book-cover {
+            flex: 0 0 250px;
+            margin-right: 30px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            align-self: center;
+        }
+
+        .book-cover img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .book-details {
+            flex: 1;
+        }
+
+        h1 {
+            color: #2e7d32;
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-weight: 600;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        h1::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: #4caf50;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+        }
+
+        .detail-list {
+            list-style: none;
+            padding: 0;
+            margin: 25px 0;
+        }
+
+        .detail-item {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .detail-label {
+            font-weight: 600;
+            color: #2e7d32;
+            min-width: 120px;
+            display: inline-block;
+        }
+
+        .detail-value {
+            flex: 1;
+            padding: 8px 12px;
+            background-color: #f5fbf5;
+            border-radius: 6px;
+            border-left: 3px solid #4caf50;
+        }
+
+        .price-tag {
+            display: inline-block;
+            background-color: #4caf50;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 18px;
+            margin-top: 10px;
+        }
+
+        .category-badge {
+            display: inline-block;
+            background-color: #e8f5e9;
+            color: #2e7d32;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .back-button {
+            display: inline-block;
+            background-color: #e8f5e9;
+            color: #2e7d32;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 20px;
+            transition: all 0.3s;
+            border: 2px solid #c8e6c9;
+        }
+
+        .back-button:hover {
+            background-color: #c8e6c9;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .book-container {
+                flex-direction: column;
+            }
+            
+            .book-cover {
+                flex: 0 0 auto;
+                margin-right: 0;
+                margin-bottom: 20px;
+                max-width: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="book-container">
+        <div class="book-cover">
+            <img src="https://via.placeholder.com/250x350?text=Book+Cover" alt="Book Cover">
+        </div>
+        <div class="book-details">
+            <h1>The Great Gatsby</h1>
+            
+            <ul class="detail-list">
+                <li class="detail-item">
+                    <span class="detail-label">Category:</span>
+                    <span class="detail-value"><span class="category-badge">Fiction</span></span>
+                </li>
+                <li class="detail-item">
+                    <span class="detail-label">Author:</span>
+                    <span class="detail-value">F. Scott Fitzgerald</span>
+                </li>
+                <li class="detail-item">
+                    <span class="detail-label">Slug:</span>
+                    <span class="detail-value">the-great-gatsby</span>
+                </li>
+                <li class="detail-item">
+                    <span class="detail-label">Description:</span>
+                    <span class="detail-value">The Great Gatsby is a 1925 novel by American writer F. Scott Fitzgerald. Set in the Jazz Age on Long Island, the novel depicts narrator Nick Carraway's interactions with mysterious millionaire Jay Gatsby and Gatsby's obsession to reunite with his former lover, Daisy Buchanan.</span>
+                </li>
+                <li class="detail-item">
+                    <span class="detail-label">Price:</span>
+                    <span class="detail-value"><span class="price-tag">$12.99</span></span>
+                </li>
+            </ul>
+            
+            <a href="#" class="back-button">← Back to Books</a>
+        </div>
+    </div>
+</body>
+</html>
