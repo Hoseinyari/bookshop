@@ -6,6 +6,12 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 #نمایش تمام کتاب ها در صفحه اصلی
+
+def main_page_view(request):
+
+    return render(request,"accounts/main_page.html")
+     
+
 @login_required
 def home_view(request): 
     all_books = Book.objects.all()
