@@ -12,16 +12,17 @@ def main_page_view(request):
     return render(request,"accounts/main_page.html")
      
 
-@login_required
+# @login_required
 def home_view(request): 
     all_books = Book.objects.all()
     return render(request,'books/home.html',{"all_books": list(all_books)})
 
 #نمایش جزببات یک کناب
 
-def book_detail(request,book_slug):
-    the_book = Book.objects.get(book_slug = book_slug)
+def book_detail(request,slug):
+    the_book = Book.objects.get(book_slug =slug)
     return render(request, 'books/the_book.html',{"book":the_book})
+
 
 #اضافه کردن کتاب جدید
 def add_book_view(request):

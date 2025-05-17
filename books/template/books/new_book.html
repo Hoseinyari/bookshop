@@ -6,206 +6,88 @@
     <title>Add New Book</title>
     <style>
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #e0f7e0, #a5d6a7, #81c784);
-            margin: 0;
-            padding: 20px;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .form-container {
-            background-color: white;
-            border-radius: 12px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-            padding: 30px;
-            width: 100%;
+            font-family: Arial, sans-serif;
             max-width: 600px;
-            transition: transform 0.3s ease;
+            margin: 0 auto;
+            padding: 20px;
         }
-
-        .form-container:hover {
-            transform: translateY(-5px);
-        }
-
         h1 {
+            color: #333;
             text-align: center;
-            color: #2e7d32;
-            margin-bottom: 25px;
-            font-weight: 600;
-            position: relative;
         }
-
-        h1::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 3px;
-            background: #4caf50;
-            margin: 10px auto;
-        }
-
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
-
         label {
             display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-            color: #2e7d32;
+            margin-bottom: 5px;
+            font-weight: bold;
         }
-
         input[type="text"],
         input[type="number"],
         input[type="file"],
-        select,
-        textarea {
+        select {
             width: 100%;
-            padding: 12px 15px;
-            border: 2px solid #c8e6c9;
-            border-radius: 8px;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
             box-sizing: border-box;
-            font-size: 16px;
-            transition: border-color 0.3s;
         }
-
-        input[type="text"]:focus,
-        input[type="number"]:focus,
-        select:focus,
-        textarea:focus {
-            border-color: #4caf50;
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
-        }
-
-        .submit-btn {
-            background-color: #4caf50;
+        button {
+            background-color: #4CAF50;
             color: white;
-            padding: 14px 20px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 16px;
-            font-weight: 600;
-            width: 100%;
-            transition: background-color 0.3s, transform 0.2s;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .submit-btn:hover {
-            background-color: #388e3c;
-            transform: translateY(-2px);
-        }
-
-        .submit-btn:active {
-            transform: translateY(0);
-        }
-
-        small {
-            color: #666;
-            font-size: 12px;
-            display: block;
-            margin-top: 5px;
-        }
-
-        .file-input-container {
-            position: relative;
-            overflow: hidden;
-            display: inline-block;
-            width: 100%;
-        }
-
-        .file-input-button {
-            background-color: #e8f5e9;
-            color: #2e7d32;
             padding: 10px 15px;
-            border: 2px dashed #a5d6a7;
-            border-radius: 8px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
             font-size: 16px;
-            font-weight: 500;
-            text-align: center;
-            width: 100%;
-            cursor: pointer;
-            transition: all 0.3s;
         }
-
-        .file-input-button:hover {
-            background-color: #c8e6c9;
-            border-color: #81c784;
-        }
-
-        .file-input-container input[type="file"] {
-            position: absolute;
-            left: 0;
-            top: 0;
-            opacity: 0;
-            width: 100%;
-            height: 100%;
-            cursor: pointer;
-        }
-
-        .category-icon {
-            margin-right: 8px;
-            color: #4caf50;
+        button:hover {
+            background-color: #45a049;
         }
     </style>
 </head>
 <body>
-    <div class="form-container">
-        <h1>Add New Book</h1>
-        <form action="/submit-book" method="POST" enctype="multipart/form-data">
-            <div class="form-group">
-                <label for="book_title">Book Title:</label>
-                <input type="text" id="book_title" name="book_title" placeholder="Enter book title" required>
-            </div>
-
-            <div class="form-group">
-                <label for="book_category">Book Category:</label>
-                <select id="book_category" name="book_category" required>
-                    <option value="">Select a category</option>
-                    <option value="Fiction">📖 Fiction</option>
-                    <option value="Non-Fiction">📚 Non-Fiction</option>
-                    <option value="Science">🔬 Science</option>
-                    <option value="Biography">👤 Biography</option>
-                    <option value="History">⏳ History</option>
-                    <option value="Children">🧸 Children</option>
-                    <option value="Other">✨ Other</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label for="book_image">Book Cover Image:</label>
-                <div class="file-input-container">
-                    <div class="file-input-button">Choose Cover Image</div>
-                    <input type="file" id="book_image" name="book_image" accept="image/*">
-                </div>
-                <small>Recommended size: 500x800 pixels</small>
-            </div>
-
-            <div class="form-group">
-                <label for="book_author">Book Author:</label>
-                <input type="text" id="book_author" name="book_author" placeholder="Author's full name" required>
-            </div>
-
-            <div class="form-group">
-                <label for="book_slug">Book Slug:</label>
-                <input type="text" id="book_slug" name="book_slug" placeholder="the-great-gatsby" required>
-                <small>URL-friendly identifier (lowercase, hyphens instead of spaces)</small>
-            </div>
-
-            <div class="form-group">
-                <label for="book_price">Book Price ($):</label>
-                <input type="number" id="book_price" name="book_price" min="0" step="0.01" placeholder="19.99" required>
-            </div>
-
-            <div class="form-group">
-                <button type="submit" class="submit-btn">Add Book to Collection</button>
-            </div>
-        </form>
-    </div>
+    <h1>Add New Book</h1>
+    <form action="/submit-book" method="POST" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="title">Book Title:</label>
+            <input type="text" id="title" name="title" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="image">Book Image:</label>
+            <input type="file" id="image" name="image" accept="image/*" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="category">Book Category:</label>
+            <select id="category" name="category" required>
+                <option value="">Select a category</option>
+                <option value="fiction">Fiction</option>
+                <option value="non-fiction">Non-Fiction</option>
+                <option value="biography">Biography</option>
+                <option value="science">Science</option>
+                <option value="history">History</option>
+                <option value="fantasy">Fantasy</option>
+                <option value="romance">Romance</option>
+                <option value="mystery">Mystery</option>
+                <option value="children">Children's Books</option>
+                <option value="other">Other</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="author">Book Author:</label>
+            <input type="text" id="author" name="author" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="price">Book Price ($):</label>
+            <input type="number" id="price" name="price" min="0" step="0.01" required>
+        </div>
+        
+        <button type="submit">Add Book</button>
+    </form>
 </body>
 </html>

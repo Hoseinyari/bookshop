@@ -2,7 +2,7 @@ from django.db import models
 
 # Create your models here.
 class Category(models.Model):
-    cat_name = models.CharField(unique=True)
+    cat_name = models.CharField(max_length=255,unique=True)
     cat_slug = models.SlugField() 
 
 
