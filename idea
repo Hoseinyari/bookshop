@@ -1,6 +1,4 @@
-add category for books:
-
-"fiction","non-fiction","biography","science",history","fantasy","romance","mystery","children","other"
+fix slug field
 
 some front change to add new book 
 
