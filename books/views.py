@@ -1,5 +1,5 @@
 from django.shortcuts import render,HttpResponse,HttpResponseRedirect
-from .models import Book
+from books.models import *
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 
@@ -14,13 +14,28 @@ def main_page_view(request):
 
 # @login_required
 def home_view(request): 
-    all_books = Book.objects.all()
-    return render(request,'books/home.html',{"all_books": list(all_books)})
+    cats = Category.objects.all()
+    images = list()
+    if cats is None:
+        books = Book.objects.all()
+        for book in books:
+            book_dto = BookDto(book)
+            book_dto.image = book_image.objects.filter(book_id=book)
+            images.append(book_dto) 
+        return render(request, "books/home.html",{'cats': cats})
+    else:
+        books = Book.objects.filter(book_category__cat_name__contains=cats)
+        for book in books:
+            book_dto = BookDto(book)
+            book_dto.image = book_image.objects.filter(book_id=book)
+            images.append(book_dto) 
+        return render(request, "books/home.html",{'cats': cats, "current_cat": cats})
 
 #نمایش جزببات یک کناب
 
 def book_detail(request,slug):
-    the_book = Book.objects.get(book_slug =slug)
+    # check slug
+    the_book = Book.objects.get(book_id =slug)
     return render(request, 'books/the_book.html',{"book":the_book})
 
 

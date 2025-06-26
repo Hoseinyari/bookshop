@@ -1,35 +1,27 @@
 from django.db import models
-from django.utils.text import slugify
 # Create your models here.
 
-categories = {
-    "fiction":"تخیلی" ,
-    "non-fiction":"داستان واقعی",
-    "biography":"بیوگرافی",
-    "science":"علمی",
-    "history":"تاریخی",
-    "fantasy":"فانتزی",
-    "romance":"رومانتیک",
-    "mystery":"رازالود",
-    "children":"مناسب کودکان",
-    "other":"موضوعات دیگر"
-    }
-
+class Category(models.Model):
+    cat_slug = models.SlugField(max_length=200)
+    cat_name = models.CharField(max_length=200,unique=True)
 
 
 class Book(models.Model):
+    book_id=models.IntegerField(unique=True, primary_key=True, default=00000)
     Book_title = models.CharField(max_length=255)
-    book_image = models.ImageField()
-    slug = models.SlugField(max_length=100, unique=True)
-    Book_category = models.CharField(max_length=255,choices =categories)
+    Book_description = models.TextField(null=True)
     Book_auther = models.CharField(max_length=255)
+    Book_category = models.ForeignKey(Category, on_delete=models.CASCADE)
     Book_price = models.PositiveIntegerField()
+    Book_slug = models.SlugField(max_length=500, unique=True)
 
-    def save(self, *args, **kwargs):
-        if not self.slug:
-            self.slug = slugify(self.Book_title)
-        super().save(*args, **kwargs)
+class book_image():
+    book_id=models.ForeignKey(Book , on_delete=models.CASCADE)
+    book_image = models.ImageField(default="defaul.jpg", upload_to="books/photos/")
+    
+class BookDto:
 
-    def __str__(self) -> str:
-        return self.Book_title
+    def __init__(self,book:Book):
+        self.book : Book = book
+        self.image  = None
     
