@@ -7,9 +7,9 @@ from django.contrib.auth.decorators import login_required
 
 #نمایش تمام کتاب ها در صفحه اصلی
 
-def main_page_view(request):
+# def main_page_view(request):
 
-    return render(request,"accounts/main_page.html")
+#     return render(request,"accounts/main_page.html")
      
 
 # @login_required
@@ -33,15 +33,16 @@ def home_view(request):
 
 #نمایش جزببات یک کناب
 
-def book_detail(request,slug):
+def book_detail(request,book_id):
     # check slug
-    the_book = Book.objects.get(book_id =slug)
+    the_book = Book.objects.get(book_id =book_id)
     return render(request, 'books/the_book.html',{"book":the_book})
 
 
 #اضافه کردن کتاب جدید
 def add_book_view(request):
     if request.method == "POST":
+
         form = request.POST
         form_images = request.FILES
         new_book = Book(
@@ -49,7 +50,7 @@ def add_book_view(request):
             Book_category=form["Book_category"],
             book_image = form_images["book_image"],
             Book_auther= form['Book_auther'],
-            book_slug = form['book_title'].replace(" ","-"),
+            book_slug = form['book_title'+'Book_auther'].replace(" ","-"),
             Book_price = form["Book_price"]
         )
         new_book.save()
