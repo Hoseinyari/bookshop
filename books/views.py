@@ -24,9 +24,11 @@ def home_view(request):
             images.append(book_dto) 
         return render(request, "books/home.html",{'cats': cats})
     else:
-        books = Book.objects.filter(book_category__cat_name__contains=cats)
+        selected_cat = request.GET.get('Book_category')
+        books = Book.objects.filter(Book_category=selected_cat)
         for book in books:
             book_dto = BookDto(book)
+            #change parameters
             book_dto.image = book_image.objects.filter(book_id=book)
             images.append(book_dto) 
         return render(request, "books/home.html",{'cats': cats, "current_cat": cats})
