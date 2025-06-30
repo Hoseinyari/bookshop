@@ -29,14 +29,13 @@ def home_view(request):
         for book in books:
             book_dto = BookDto(book)
             #change parameters
-            book_dto.image = book_image.objects.filter(book_id=book)
+            book_dto.image = book_image.objects.filter(book_id=book.id)
             images.append(book_dto) 
         return render(request, "books/home.html",{'cats': cats, "current_cat": cats})
 
 #نمایش جزببات یک کناب
 
 def book_detail(request,book_id):
-    # check slug
     the_book = Book.objects.get(book_id =book_id)
     return render(request, 'books/the_book.html',{"book":the_book})
 

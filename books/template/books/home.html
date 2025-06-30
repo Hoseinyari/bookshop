@@ -45,9 +45,10 @@
     <table>
         <thead>
             <tr>
-                <th>تصویر</th>
-                <th>دسته بندی</th>
                 <th>عنوان</th>
+                <th>دسته بندی</th>
+                <th>توضیحات</th>
+                <img>تصویر</img>
                 <th>نویسنده</th>
                 <th>مبلغ</th>
             </tr>
@@ -55,14 +56,16 @@
         <tbody>
             <!-- dynamic data from db-->
 
-            {% for book in all_books %}
+            {% for book in books %}
                 
             <tr>
-                <td>{{book.book_image}}</td>
+                <td>{{book.book_title}}</td>
                 
                 <td>{{book.book_category}}</td>
                 
-                <td>{{book.book_title}}</td>
+                <td>{{book.Book_description}}</td>
+                
+                <td>{{book.book_image}}</td>
                 
                 <td>{{book.book_auther}}</td>
                 
