@@ -7,6 +7,7 @@ class Category(models.Model):
 
 
 class Book(models.Model):
+    # use django id feild 
     book_id=models.IntegerField(unique=True, primary_key=True, default=00000)
     Book_title = models.CharField(max_length=255)
     Book_description = models.TextField(null=True)

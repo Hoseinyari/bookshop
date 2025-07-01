@@ -18,12 +18,15 @@ def home_view(request):
     images = list()
     if cats is None:
         books = Book.objects.all()
+        #for loop is not correct (books)
         for book in books:
             book_dto = BookDto(book)
-            book_dto.image = book_image.objects.filter(book_id=book)
+            #FIX ID
+            book_dto.image = book_image.objects.filter(id=book.book_id)
             images.append(book_dto) 
         return render(request, "books/home.html",{'cats': cats})
     else:
+
         selected_cat = request.GET.get('Book_category')
         books = Book.objects.filter(Book_category=selected_cat)
         for book in books:
