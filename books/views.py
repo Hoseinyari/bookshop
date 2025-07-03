@@ -4,37 +4,17 @@ from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
-
-#نمایش تمام کتاب ها در صفحه اصلی
-
-# def main_page_view(request):
-
-#     return render(request,"accounts/main_page.html")
-     
-
-# @login_required
 def home_view(request): 
     cats = Category.objects.all()
     images = list()
     if cats is None:
         books = Book.objects.all()
-        #for loop is not correct (books)
-        for book in books:
-            book_dto = BookDto(book)
-            #FIX ID
-            book_dto.image = book_image.objects.filter(id=book.book_id)
-            images.append(book_dto) 
-        return render(request, "books/home.html",{'cats': cats})
+        return render(request,'books/home.html',{'cats': cats})
     else:
 
         selected_cat = request.GET.get('Book_category')
         books = Book.objects.filter(Book_category=selected_cat)
-        for book in books:
-            book_dto = BookDto(book)
-            #change parameters
-            book_dto.image = book_image.objects.filter(book_id=book.id)
-            images.append(book_dto) 
-        return render(request, "books/home.html",{'cats': cats, "current_cat": cats})
+        return render(request, 'books/home.html',{'cats': cats, "current_cat": cats})
 
 #نمایش جزببات یک کناب
 
@@ -80,6 +60,7 @@ def search_in_titles(request):
         data = request.GET
         # checks for empty search
         if data["search"] != "":
+         
             # find search item in book titles
             search_results = Book.objects.filter(caption__contains=data["search"])
             return render(request,"books/search_result.html",{"results":search_results})

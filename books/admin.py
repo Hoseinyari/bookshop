@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Book
+from .models import Book,Category
 # Register your models here.
 
 class bookAdmin(admin.ModelAdmin):
@@ -7,3 +7,4 @@ class bookAdmin(admin.ModelAdmin):
 #  slug = {"slug": ("title", "auther")}
   
 admin.site.register(Book, bookAdmin)
+admin.site.register(Category)
