@@ -5,7 +5,8 @@ from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def home_view(request): 
-    cats = Category.objects.all()
+# if you did not select categoty
+    cats = books.objects.all()
     images = list()
     if cats is None:
         books = Book.objects.all()
