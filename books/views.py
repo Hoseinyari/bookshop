@@ -1,28 +1,27 @@
-from django.shortcuts import render,HttpResponse,HttpResponseRedirect
+from django.shortcuts import get_object_or_404,render,HttpResponse,HttpResponseRedirect
 from books.models import *
 from django.urls import reverse
+
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def home_view(request): 
 # if you did not select categoty
-    cats = books.objects.all()
-    images = list()
-    if cats is None:
+    selected_cat = request.GET.get('Book_category')
+    # cats = books.objects.all()
+    # images = list()
+    if selected_cat is None:
         books = Book.objects.all()
-        return render(request,'books/home.html',{'cats': cats})
+        return render(request,'books/home.html')
     else:
-
-        selected_cat = request.GET.get('Book_category')
         books = Book.objects.filter(Book_category=selected_cat)
-        return render(request, 'books/home.html',{'cats': cats, "current_cat": cats})
+        return render(request, 'books/home.html')
 
 #نمایش جزببات یک کناب
 
-def book_detail(request,book_id):
-    the_book = Book.objects.get(book_id =book_id)
-    return render(request, 'books/the_book.html',{"book":the_book})
-
+def book_detail(request, slug):
+    book = get_object_or_404(Book, slug=slug)
+    return render(request, 'books/the_book.html', {'book': book})
 
 #اضافه کردن کتاب جدید
 def add_book_view(request):
