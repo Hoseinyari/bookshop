@@ -20,7 +20,8 @@ def home_view(request):
 #نمایش جزببات یک کناب
 
 def book_detail(request, slug):
-    book = get_object_or_404(Book, slug=slug)
+    book = get_object_or_404(Book, Book_slug=slug)
+    print("hahahah")
     return render(request, 'books/the_book.html', {'book': book})
 
 #اضافه کردن کتاب جدید
@@ -38,9 +39,9 @@ def add_book_view(request):
             Book_price = form["Book_price"]
         )
         new_book.save()
-
         return HttpResponseRedirect(reverse("home"))
     else:
+        print("heeeeyyyyy")
         print(f"====={request}=====")
     return render(request,'books/new_book.html')
 
